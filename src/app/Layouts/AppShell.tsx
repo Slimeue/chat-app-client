@@ -42,7 +42,16 @@ const AppShellLayout: FC<IProps> = ({ children }) => {
           ))}
         </Stack>
       </AppShell.Navbar>
-      <AppShell.Main >{children}</AppShell.Main>
+      <AppShell.Main>
+        <Box
+          style={{
+            display: "flex",
+            height: "calc(100vh - 60px)",
+          }}
+        >
+          {children}
+        </Box>
+      </AppShell.Main>
     </AppShell>
   );
 };

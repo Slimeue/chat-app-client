@@ -17,7 +17,9 @@ const RoomsPage = () => {
       },
     },
     onCompleted: (data) => {
-      setSelectedRoom(data.chatRoomQuery!.chatRooms!.item[0].id);
+      if (!loading) {
+        setSelectedRoom(data.chatRoomQuery!.chatRooms!.item[0].id);
+      }
     },
   });
 
@@ -29,8 +31,8 @@ const RoomsPage = () => {
 
   return (
     <>
-      <Box className="flex flex-row">
-        <Box className="border-r border-r-gray-300 w-60 h-screen">
+      <Box className="flex flex-row h-full w-full">
+        <Box className="border-r border-r-gray-300 w-60">
           {rooms.map((room) => (
             <RoomsList
               key={room.id}
@@ -39,7 +41,13 @@ const RoomsPage = () => {
             />
           ))}
         </Box>
-        <Box>
+        <Box
+          className="w-full "
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+          }}
+        >
           <ConversationBox receiverId={selectedRoom} />
         </Box>
       </Box>

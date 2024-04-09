@@ -1,10 +1,12 @@
-import { ScrollArea } from "@mantine/core";
+import { ScrollArea, Stack } from "@mantine/core";
 import {
   Message,
   useGetMessagesQuery,
   useMessageSubscriptionSubscription,
 } from "../../../../../../lib/types/apolloComponents";
 import { FC, useState } from "react";
+import ChatMessage from "./ChatMessage";
+import ChatInputField from "./ChatInputField";
 
 interface IProps {
   receiverId: string;
@@ -37,16 +39,17 @@ const ConversationBox: FC<IProps> = (props) => {
 
   return (
     <>
-      <ScrollArea.Autosize>
-        <div>
+      <div className="w-full pb-5 pl-5 pr-5">
+        <ScrollArea.Autosize mah="calc(100vh - 120px)" className="w-full ">
           {messages.map((message) => (
-            <div key={message.id}>{message.content}</div>
+            <ChatMessage key={message.id} message={message} />
           ))}
           {newMessages.map((message) => (
-            <div key={message.id}>{message.content}</div>
+            <ChatMessage key={message.id} message={message} />
           ))}
-        </div>
-      </ScrollArea.Autosize>
+        </ScrollArea.Autosize>
+        <ChatInputField receiverId={receiverId} />
+      </div>
     </>
   );
 };
