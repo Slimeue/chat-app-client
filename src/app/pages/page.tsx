@@ -4,7 +4,9 @@ import AppLayout from "../Layouts/AppLayout";
 import AppShellLayout from "../Layouts/AppShell";
 import { ReactElement } from "react";
 
+require("dotenv").config();
 const PageDynamic = dynamic(() => import("../components/Home/HomePage"));
+
 const Page = () => {
   return (
     <AppLayout>
