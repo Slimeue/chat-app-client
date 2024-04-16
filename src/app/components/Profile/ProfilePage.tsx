@@ -1,7 +1,7 @@
 "use client";
 import { User, useUsersQuery } from "../../../../lib/types/apolloComponents";
 
-const Page = () => {
+const ProfilePage = () => {
   const { data, loading } = useUsersQuery();
   const users = data?.userQuery as User;
   if (loading) return <div>Loading...</div>;
@@ -13,4 +13,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default ProfilePage;

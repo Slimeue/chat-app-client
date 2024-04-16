@@ -1,25 +1,51 @@
-import { Box, Button, UnstyledButton } from "@mantine/core";
-import { CiLogout } from "react-icons/ci";
-import { useAuthContext } from "../context/AuthContext/auth-context";
-const Header = () => {
-  const { signOut } = useAuthContext();
+"use client"
+import { Avatar, CloseButton, Image, Menu, TextInput, } from "@mantine/core"
+import { IconBell, IconNotification, IconSearch, IconUserPlus } from "@tabler/icons-react"
+import { FC, useState } from "react"
 
-  return (
-    <>
-      <header>
-        <Box className="flex flex-row w-screen justify-between items-center p-10">
-          <div>
-            <h1>Header</h1>
-          </div>
-          <div>
-            <UnstyledButton>
-              <CiLogout onClick={() => signOut()} className="size-10" />
-            </UnstyledButton>
-          </div>
-        </Box>
-      </header>
-    </>
-  );
-};
+interface Props {
 
-export default Header;
+}
+const Header: FC<Props> = () => {
+    const [search, setSearch] = useState('');
+    
+    return (
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+            }}
+        >
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <img
+                    src="/catmelogoapp.png"
+                    style={{ width: "24px", height: "auto" }}
+                    alt="catme"
+                />
+                </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <IconUserPlus
+                    size={30}
+                    strokeWidth={2}
+                    color={"black"}
+                    style={{ cursor: "pointer" }}
+                />
+                <Menu>
+                    <Menu.Target>
+                        <Avatar
+                            src={"/profile.png"}
+                            alt="User avatar"
+                            radius="xl"
+                            style={{ cursor: "pointer" }}
+                        />
+                    </Menu.Target>
+                  
+                </Menu>
+
+            </div>
+        </div>)
+}
+export default Header

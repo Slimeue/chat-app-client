@@ -70,7 +70,7 @@ const AuthContextProvider: FC<IProps> = ({ children }) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("status", STATUS.AUTHENTICATED);
       localStorage.setItem("user", JSON.stringify(data.user));
-      router.push("/pages");
+      router.push("/app");
     }
   };
 

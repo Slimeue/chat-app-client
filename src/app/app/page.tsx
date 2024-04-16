@@ -1,16 +1,12 @@
-import dynamic from "next/dynamic";
-import AppSignIn from "../components/Auth/AppSignIn";
 import AppLayout from "../Layouts/AppLayout";
-import AppShellLayout from "../Layouts/AppShell";
-import { ReactElement } from "react";
+
 
 require("dotenv").config();
-const PageDynamic = dynamic(() => import("../components/Home/HomePage"));
 
 const Page = () => {
   return (
     <AppLayout>
-      <PageDynamic />
+      <h1>HomePage</h1>
     </AppLayout>
   );
 };

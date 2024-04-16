@@ -1,17 +1,32 @@
-import { NavLink, UnstyledButton } from "@mantine/core";
+"use client"
+import { Card, Image, Avatar , Text} from "@mantine/core";
+import React, { FC, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import Link from "next/link";
+import { ChatRoom } from "../../../../lib/types/apolloComponents";
 
-interface IProps {
-  link: string;
-  name: string;
+
+interface ChatMessageCardProps {
+    message: ChatRoom;
+ 
 }
-const NavBarLink: FC<IProps> = (props) => {
+
+const ChatMessageCard: FC<ChatMessageCardProps> = ({ message}) => {
   const router = useRouter();
-  const { link, name } = props;
-  return (
-    <UnstyledButton onClick={() => router.push(link)}>{name}</UnstyledButton>
-  );
+   
+    return (
+        <Link href={`/app/${message.id}`}
+            className={`chat-message-card`}
+            style={{ display: 'flex', flexDirection: 'row', cursor: 'pointer', gap:10, padding:10, marginTop:2}}
+           
+        >
+            <Avatar src={'/me2.jpg'} alt="User avatar" />
+            <div style={{ flexGrow: 1 }}>
+                <Text fw={500}>{message.name}</Text>
+                <Text size="sm" lineClamp={1}>{message.ownerId}</Text>
+            </div>
+        </Link>
+    );
 };
 
-export default NavBarLink;
+export default ChatMessageCard;

@@ -11,14 +11,13 @@ interface IProps {
   children: ReactNode;
 }
 const AppLayout: FC<IProps> = ({ children }) => {
-  useEffect(() => {
-    const status = getStatus();
+  // useEffect(() => {  //   const status = getStatus();
 
-    if (status !== STATUS.AUTHENTICATED) {
-      console.log(`Status: ${status}`);
-      redirect("/");
-    }
-  });
+  //   if (status !== STATUS.AUTHENTICATED) {
+  //     console.log(`Status: ${status}`);
+  //     redirect("/");
+  //   }
+  // });
 
   return (
     <>

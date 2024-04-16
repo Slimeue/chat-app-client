@@ -3,56 +3,57 @@ import { AppShell, Box, Group, Skeleton, Stack } from "@mantine/core";
 import { FC, ReactNode } from "react";
 import NavBarLink from "./SideNavBar/NavBarLink";
 import Header from "./Header";
+import SideChatNav from "./SideNavBar/SideNavigation";
 
 export interface IProps {
   children: ReactNode;
 }
 
-const NavBarData = [
-  {
-    name: "Home",
-    link: "/pages",
-  },
-  {
-    name: "Profile",
-    link: "/pages/profile",
-  },
-  {
-    name: "Rooms",
-    link: "/pages/rooms",
-  },
-];
+// const NavBarData = [
+//   {
+//     name: "Home",
+//     link: "/pages",
+//   },
+//   {
+//     name: "Profile",
+//     link: "/app/profile",
+//   },
+//   {
+//     name: "Rooms",
+//     link: "/app/rooms",
+//   },
+// ];
 const AppShellLayout: FC<IProps> = ({ children }) => {
   return (
-    <AppShell header={{ height: 60 }} navbar={{ width: 150, breakpoint: "sm" }}>
-      <AppShell.Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <Box className="flex justify-between">
-          <Header />
-        </Box>
-      </AppShell.Header>
+    <AppShell
+      // header={{ height: 40 }}
+      navbar={{ width: 300, breakpoint: "sm" }}>
+      {/* <AppShell.Header>
+        <Header />
+      </AppShell.Header> */}
       <AppShell.Navbar>
-        <Stack>
-          {NavBarData.map((item) => (
-            <NavBarLink key={item.name} {...item} />
-          ))}
-        </Stack>
+        <Box
+          style={{
+            display: "flex",
+            height: "calc(100vh)",
+
+          }}>
+
+          <SideChatNav />
+        </Box>
       </AppShell.Navbar>
       <AppShell.Main>
         <Box
           style={{
             display: "flex",
-            height: "calc(100vh - 60px)",
+            height: "calc(100vh)",
+
           }}
         >
           {children}
         </Box>
       </AppShell.Main>
-    </AppShell>
+    </AppShell >
   );
 };
 
