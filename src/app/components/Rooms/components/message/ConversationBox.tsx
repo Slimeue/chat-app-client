@@ -5,7 +5,7 @@ import {
   useMessageSubscriptionSubscription,
 } from "../../../../../../lib/types/apolloComponents";
 import { FC, useState } from "react";
-import ChatMessage from "./ChatMessage";
+
 import ChatInputField from "./ChatInputField";
 
 interface IProps {
@@ -41,12 +41,12 @@ const ConversationBox: FC<IProps> = (props) => {
     <>
       <div className="w-full pb-5 pl-5 pr-5">
         <ScrollArea.Autosize mah="calc(100vh - 120px)" className="w-full ">
-          {messages.map((message) => (
+          {/* {messages.map((message) => (
             <ChatMessage key={message.id} message={message} />
           ))}
           {newMessages.map((message) => (
             <ChatMessage key={message.id} message={message} />
-          ))}
+          ))} */}
         </ScrollArea.Autosize>
         <ChatInputField receiverId={receiverId} />
       </div>

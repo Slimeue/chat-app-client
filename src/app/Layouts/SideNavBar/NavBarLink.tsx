@@ -23,7 +23,7 @@ const ChatMessageCard: FC<ChatMessageCardProps> = ({ message}) => {
             <Avatar src={'/me2.jpg'} alt="User avatar" />
             <div style={{ flexGrow: 1 }}>
                 <Text fw={500}>{message.name}</Text>
-                <Text size="sm" lineClamp={1}>{message.ownerId}</Text>
+                <Text size="sm" lineClamp={1}>You: Message me</Text>
             </div>
         </Link>
     );
