@@ -47,7 +47,6 @@ const AppShellLayout: FC<IProps> = ({ children }) => {
           style={{
             display: "flex",
             height: "calc(100vh)",
-
           }}
         >
           {children}

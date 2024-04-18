@@ -1,6 +1,6 @@
 "use client"
 import ChatMessage from "./ChatMessage";
-import { Message, useGetMessagesQuery, useMessageSubscriptionSubscription } from "../../../../lib/types/apolloComponents";
+import { Message, useGetMessagesQuery, useMessageSubscriptionSubscription } from "../../../../../lib/types/apolloComponents";
 import { FC, useState } from "react";
 
 interface Props{

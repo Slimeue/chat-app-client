@@ -7,7 +7,7 @@ import {
   useAuthContext,
 } from "@/app/context/AuthContext/auth-context";
 import { getAuthUser } from "@/app/utils/helper";
-import { Message } from "../../../../lib/types/apolloComponents";
+import { Message } from "../../../../../lib/types/apolloComponents";
 
 interface IProps {
   message: Message;
@@ -20,18 +20,22 @@ const user = getAuthUser();
         <div style={{
           display: 'flex',
           flexDirection:  user?.id === message.senderId ? 'row-reverse' : 'row',
-          alignItems:'center',
-          gap: 5
+          alignItems:'end',
+          padding:'8px',
+          gap: 10
         }}>
            <Avatar src={'/me2.jpg'} alt="User avatar" size={24} />
             <div style={{
                alignSelf:  user?.id === message.senderId ? 'flex-end' : 'flex-start',
-               backgroundColor:  user?.id === message.senderId ? '#DCF8C6' : '#E5E7EA',
+               backgroundColor:  user?.id === message.senderId ? '#DCF8C6' : 'transparent',
                borderRadius: '8px',
-               padding: '8px',
-               marginBottom: '8px',
                maxWidth: '70%',
+               padding: '8px'
             }}>
+              <p style={{ margin: '0', fontSize:'12px',
+               textAlign: user?.id === message.senderId? 'right' : 'left',
+              
+              }}>{'Zsarissa'}</p>
                 <p style={{ margin: '0' }}>{message.content}</p>
             </div>
         </div>
