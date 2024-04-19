@@ -1,12 +1,13 @@
 "use client"
 import { ActionIcon, AppShellNavbar, Box, Button, CloseButton, Code, Divider, Group, Menu, Modal, MultiSelect, ScrollArea, Text, TextInput } from "@mantine/core"
 import ChatMessageCard from "./NavBarLink";
-import { IconEdit, IconSearch, IconX } from "@tabler/icons-react";
+import { IconEdit, IconSearch, IconUser, IconUserPlus, IconX } from "@tabler/icons-react";
 import { FC, useState } from "react";
 import NavBarLink from "./NavBarLink";
 import { ChatRoom, useChatRoomsQuery } from "../../../../lib/types/apolloComponents";
 import UserButton from "./UserButton";
 import { useDisclosure } from "@mantine/hooks";
+import AddFriendModal from "@/app/components/Modals/AddFriend";
 
 
 interface SideChatNavProps {
@@ -14,8 +15,8 @@ interface SideChatNavProps {
 }
 const SideChatNav: FC<SideChatNavProps> = () => {
     const [search, setSearch] = useState('');
-    const [opened, { open, close }] = useDisclosure(false);
-
+    const [opened, setOpenModal] = useState(false);
+    const [openAddFriend, setAddFriendModal] = useState(false);
     const { data, loading } = useChatRoomsQuery({
         variables: {
             input: {
@@ -32,7 +33,10 @@ const SideChatNav: FC<SideChatNavProps> = () => {
                 <Group justify="space-between" style={{ padding: 20 }}>
                     <Text fw={700}>CHATS</Text>
                     <Group gap="xs">
-                        <ActionIcon variant="transparent" onClick={open}>
+                        <ActionIcon variant="transparent" onClick={()=> setAddFriendModal(true)}>
+                            <IconUserPlus size={18} color="gray" stroke={1.5} />
+                        </ActionIcon>
+                        <ActionIcon variant="transparent" onClick={()=> setOpenModal(true)}>
                             <IconEdit size={18} color="gray" stroke={1.5} />
                         </ActionIcon>
                     </Group>
@@ -60,13 +64,14 @@ const SideChatNav: FC<SideChatNavProps> = () => {
 
             </div>
 
-            <UserButton
+            {/* <UserButton
                 image="/me4.jpg"
                 name="Zsarissa"
                 status="online"
-            />
+            /> */}
+            <AddFriendModal open={openAddFriend} close={()=> setAddFriendModal(false)}/>
             <Modal opened={opened}
-                onClose={close}
+                onClose={()=>setOpenModal(false)}
                 title={'Add Room'}
                 centered
                 size={'sm'}
