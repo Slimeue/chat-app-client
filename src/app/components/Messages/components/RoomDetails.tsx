@@ -1,7 +1,7 @@
 "use client"
 import { Avatar, Box, Button, Divider, Group, Modal, MultiSelect, Text, TextInput, Image, FileButton, ActionIcon, UnstyledButton, Accordion, Tabs, SimpleGrid, Menu, ScrollArea, CopyButton, Tooltip } from "@mantine/core"
 import DetailHeader from "./DetailHeader"
-import { IconArrowRight, IconBellOff, IconCheck, IconCircleFilled, IconCopy, IconDots, IconEdit, IconFile, IconLink, IconNotificationOff, IconPhoto, IconPlus, IconTrash, IconUser, IconUsersPlus, IconX } from "@tabler/icons-react"
+import { IconArrowRight, IconBellOff, IconCheck, IconCircleFilled, IconCopy, IconDoorExit, IconDots, IconEdit, IconFile, IconLink, IconNotificationOff, IconPhoto, IconPlus, IconTrash, IconUser, IconUsersPlus, IconX } from "@tabler/icons-react"
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
 import ViewProfileModal from "../../Modals/ViewProfileModal";
@@ -45,11 +45,15 @@ const RoomDetails = () => {
                             </Tooltip>
                         )}
                     </CopyButton>
+                    <ActionIcon variant="transparent">
+                        <IconDoorExit size={18} color="gray" stroke={1.5} />
+                    </ActionIcon>
                 </Group>
                 <Group justify="center" gap="xs">
                     <Text size="xs">Mute</Text>
                     <Text size="xs">Add</Text>
                     <Text size="xs">Link</Text>
+                    <Text size="xs">Leave</Text>
                 </Group>
                 <UnstyledButton onClick={() => setOpenRoomModal(true)}
                     style={{ padding: 'var(--mantine-spacing-md)', }}>

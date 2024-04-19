@@ -1,13 +1,15 @@
 "use client"
-import { ActionIcon, AppShellNavbar, Box, Button, CloseButton, Code, Divider, Group, Menu, Modal, MultiSelect, ScrollArea, Text, TextInput } from "@mantine/core"
+import { ActionIcon, AppShellNavbar, Avatar, Box, Button, CloseButton, Code, Divider, Group, Image, Menu, Modal, MultiSelect, ScrollArea, Text, TextInput } from "@mantine/core"
 import ChatMessageCard from "./NavBarLink";
-import { IconEdit, IconSearch, IconUser, IconUserPlus, IconX } from "@tabler/icons-react";
+import { IconEdit, IconMoonStars, IconSearch, IconSettings, IconUser, IconUserPlus, IconX } from "@tabler/icons-react";
 import { FC, useState } from "react";
 import NavBarLink from "./NavBarLink";
 import { ChatRoom, useChatRoomsQuery } from "../../../../lib/types/apolloComponents";
 import UserButton from "./UserButton";
 import { useDisclosure } from "@mantine/hooks";
 import AddFriendModal from "@/app/components/Modals/AddFriend";
+import SettingsModal from "@/app/components/Modals/SettingsModal";
+import ViewProfileModal from "@/app/components/Modals/ViewProfileModal";
 
 
 interface SideChatNavProps {
@@ -17,6 +19,8 @@ const SideChatNav: FC<SideChatNavProps> = () => {
     const [search, setSearch] = useState('');
     const [opened, setOpenModal] = useState(false);
     const [openAddFriend, setAddFriendModal] = useState(false);
+    const [openProfile, setOpenProfileModal] = useState(false);
+    const [openSettings, setOpenSettingsModal] = useState(false);
     const { data, loading } = useChatRoomsQuery({
         variables: {
             input: {
@@ -30,13 +34,26 @@ const SideChatNav: FC<SideChatNavProps> = () => {
     return (
         <nav style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '100%' }}>
             <div>
+                <Group justify="space-between" style={{ padding: 20, borderBottom: '1px solid #e0e0e0' }}>
+                    <Image src={'/smalllogo.png' }  h={24}/>
+                    <Group gap="xs">
+                        <ActionIcon variant="transparent">
+                            <IconMoonStars size={24} />
+                        </ActionIcon>
+                        <ActionIcon variant="transparent" onClick={() => setOpenSettingsModal(true)} >
+                            <IconSettings size={24} />
+                        </ActionIcon>
+                        <Avatar src={'/me2.jpg'} size={24} radius="xl" onClick={() => setOpenProfileModal(true)} />
+                    </Group>
+                </Group>
+
                 <Group justify="space-between" style={{ padding: 20 }}>
                     <Text fw={700}>CHATS</Text>
                     <Group gap="xs">
-                        <ActionIcon variant="transparent" onClick={()=> setAddFriendModal(true)}>
+                        <ActionIcon variant="transparent" onClick={() => setAddFriendModal(true)}>
                             <IconUserPlus size={18} color="gray" stroke={1.5} />
                         </ActionIcon>
-                        <ActionIcon variant="transparent" onClick={()=> setOpenModal(true)}>
+                        <ActionIcon variant="transparent" onClick={() => setOpenModal(true)}>
                             <IconEdit size={18} color="gray" stroke={1.5} />
                         </ActionIcon>
                     </Group>
@@ -64,14 +81,9 @@ const SideChatNav: FC<SideChatNavProps> = () => {
 
             </div>
 
-            {/* <UserButton
-                image="/me4.jpg"
-                name="Zsarissa"
-                status="online"
-            /> */}
-            <AddFriendModal open={openAddFriend} close={()=> setAddFriendModal(false)}/>
+            <AddFriendModal open={openAddFriend} close={() => setAddFriendModal(false)} />
             <Modal opened={opened}
-                onClose={()=>setOpenModal(false)}
+                onClose={() => setOpenModal(false)}
                 title={'Add Room'}
                 centered
                 size={'sm'}
@@ -98,6 +110,9 @@ const SideChatNav: FC<SideChatNavProps> = () => {
                     </form>
                 </Box>
             </Modal>
+
+            <ViewProfileModal open={openProfile} close={() => setOpenProfileModal(false)} />
+            <SettingsModal open={openSettings} close={() => setOpenSettingsModal(false)} />
         </nav>
     );
 };
