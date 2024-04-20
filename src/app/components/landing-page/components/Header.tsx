@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 
 const Header = () => {
     return (
-        <header className="px-[5%] py-5 bg-[#FAEBFF] shadow-lg">
+        <header className="px-[5%] py-5  shadow-lg">
             <nav className="flex justify-between items-center">
                 <span className="flex items-center gap-8">
                     <img src="./catmelogoapp.png" style={{ width: '100px' }} alt="catme"></img>
@@ -20,7 +20,7 @@ const Header = () => {
                     <Link href={'././app/signin'}>         
                             Sign in
                     </Link>
-                    <Link  href={'./app/signup'} className="bg-[#A087A9] hover:bg-[#44304B] py-2 px-4 rounded text-white">Sign up</Link>
+                    <Link  href={'./app/signup'} className=" py-2 px-4 rounded text-white">Sign up</Link>
                 </span>
                 <NavBar />
             </nav>

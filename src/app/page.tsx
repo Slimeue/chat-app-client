@@ -8,8 +8,6 @@ import Header from "./components/landing-page/components/Header";
 
 export default function Home() {
   return (
-    <>
-      <Header/>
-    </>
+    <Header />
   );
 }

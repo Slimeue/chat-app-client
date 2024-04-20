@@ -35,9 +35,9 @@ const RoomModal: FC<Props> = ({ open, close }) => {
                     </Group>
                     <Box style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         {file ? (
-                            <Avatar color="cyan" src={URL.createObjectURL(file)} size={100} radius={50} />
+                            <Avatar  src={URL.createObjectURL(file)} size={100} radius={50} />
                         ) : (
-                            <Avatar color="cyan" size={100} radius={50} />
+                            <Avatar  size={100} radius={50} />
                         )}
                         <Group justify="center">
                             <FileButton onChange={setFile} accept="image/png,image/jpeg">

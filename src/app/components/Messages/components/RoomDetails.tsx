@@ -20,22 +20,22 @@ const RoomDetails = () => {
         <div style={{ display: 'flex', flexDirection: 'column', width: '35%' }}>
             <DetailHeader />
             <ScrollArea >
-                <span style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Avatar src={'/me3.jpg'} size={100} radius={50} />
                     <Text>Chimmylan</Text>
-                </span>
+                </div>
 
                 <Group justify="center" gap="xs">
                     <ActionIcon variant="transparent">
-                        <IconBellOff size={18} color="gray" stroke={1.5} />
+                        <IconBellOff size={18} stroke={1.5} />
                     </ActionIcon>
                     <ActionIcon variant="transparent" onClick={() => setAddUserModal(true)}>
-                        <IconUsersPlus size={18} color="gray" stroke={1.5} />
+                        <IconUsersPlus size={18}  stroke={1.5} />
                     </ActionIcon>
                     <CopyButton value="https://mantine.dev" timeout={2000}>
                         {({ copied, copy }) => (
                             <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
-                                <ActionIcon color={copied ? 'teal' : 'gray'} variant="subtle" onClick={copy}>
+                                <ActionIcon variant="subtle" onClick={copy}>
                                     {copied ? (
                                         <IconCheck size={24}/>
                                     ) : (
@@ -46,7 +46,7 @@ const RoomDetails = () => {
                         )}
                     </CopyButton>
                     <ActionIcon variant="transparent">
-                        <IconDoorExit size={18} color="gray" stroke={1.5} />
+                        <IconDoorExit size={18} stroke={1.5} />
                     </ActionIcon>
                 </Group>
                 <Group justify="center" gap="xs">
@@ -59,14 +59,14 @@ const RoomDetails = () => {
                     style={{ padding: 'var(--mantine-spacing-md)', }}>
                     <Group justify="space-between" gap={'xl'}>
                         <Text>Customize Room</Text>
-                        <IconEdit size={18} color="gray" stroke={1.5} />
+                        <IconEdit size={18} stroke={1.5} />
                     </Group>
                 </UnstyledButton>
                 <UnstyledButton onClick={() => setOpenMedia(true)}
                     style={{ padding: 'var(--mantine-spacing-md)', }}>
                     <Group justify="space-between" gap={'xl'}>
                         <Text>Media, Files && Links</Text>
-                        <IconEdit size={18} color="gray" stroke={1.5} />
+                        <IconEdit size={18} stroke={1.5} />
                     </Group>
                 </UnstyledButton>
                 <Accordion variant="filled">
@@ -81,7 +81,7 @@ const RoomDetails = () => {
                                 <Menu>
                                     <Menu.Target>
                                         <ActionIcon variant="transparent">
-                                            <IconDots size={18} color="gray" stroke={1.5} />
+                                            <IconDots size={18}  stroke={1.5} />
                                         </ActionIcon>
                                     </Menu.Target>
 
@@ -99,7 +99,7 @@ const RoomDetails = () => {
                         </Accordion.Panel>
                     </Accordion.Item>
                     <Accordion.Item key={'id'} value={'value'}>
-                        <Accordion.Control icon={<IconCircleFilled size={15} color="green" />}>ONLINE - 1</Accordion.Control>
+                        <Accordion.Control icon={<IconCircleFilled size={15} />}>ONLINE - 1</Accordion.Control>
                         <Accordion.Panel>
                             <Group>
                                 <Avatar src={'/me3.jpg'} size={24} />
@@ -108,7 +108,7 @@ const RoomDetails = () => {
                         </Accordion.Panel>
                     </Accordion.Item>
                     <Accordion.Item key={'id1'} value={'value1'}>
-                        <Accordion.Control icon={<IconCircleFilled size={15} color="gray" />}>OFFLINE - 1</Accordion.Control>
+                        <Accordion.Control icon={<IconCircleFilled size={15} />}>OFFLINE - 1</Accordion.Control>
                         <Accordion.Panel>
                             <Group>
                                 <Avatar src={'/me3.jpg'} size={24} />

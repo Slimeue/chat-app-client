@@ -1,3 +1,4 @@
+"use client"
 import { Group, UnstyledButton, Text, Avatar } from "@mantine/core"
 import { IconChevronRight, IconDots, IconMessageReport, IconPhone, IconPhoneCall, IconReport, IconVideo } from "@tabler/icons-react"
 import { FC, useState } from "react"
@@ -10,9 +11,9 @@ const Header: FC<Props> = ({ toggleRoomDetailsVisibility }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: 15, borderBottom: '1px solid #e0e0e0' }}>
             <UnstyledButton
-                style={{
-                    color: 'var(--mantine-color-text)',
-                }}
+                // style={{
+                //     color: 'var(--mantine-color-text)',
+                // }}
                 onClick={toggleRoomDetailsVisibility}> 
                 <Group 
                 style={{gap: 10}}>

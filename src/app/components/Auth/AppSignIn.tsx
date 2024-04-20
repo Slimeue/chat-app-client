@@ -81,7 +81,6 @@ const AuthSignIn = () => {
                 <Button
                   id="signin"
                   variant="filled"
-                  color="black"
                   fullWidth
                   style={{ marginTop: 10, borderRadius: 20 }}
                   type="submit"
@@ -96,7 +95,7 @@ const AuthSignIn = () => {
                 <Button
                   id="signup"
                   variant='outline'
-                  color="black"
+  
                   fullWidth
                   style={{ marginTop: 10, borderRadius: 20 }}
                   type="submit"

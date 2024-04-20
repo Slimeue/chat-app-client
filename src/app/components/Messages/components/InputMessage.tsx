@@ -1,3 +1,4 @@
+"use client"
 import { Box, Menu, MenuItem, TextInput, Button, ActionIcon } from "@mantine/core";
 import { FC, SetStateAction, useState } from "react";
 import { getAuthUser } from "@/app/utils/helper";

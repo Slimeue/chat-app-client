@@ -30,13 +30,13 @@ const ViewProfileModal: FC<Props> = ({ open, close }) => {
                     </Card.Section>
                     <Group justify="space-between" mt="md" mb="xs">
                         <Text fw={500}>Zsarissa</Text>
-                        <Badge color="blue">Friends</Badge>
+                        <Badge >Friends</Badge>
                     </Group>
                     <Divider size={'sm'} />
-                    <Tabs color="teal" defaultValue="friends">
+                    <Tabs  defaultValue="friends">
                         <Tabs.List>
                             <Tabs.Tab value="friends">Friends</Tabs.Tab>
-                            <Tabs.Tab value="mutualfriends" color="blue">
+                            <Tabs.Tab value="mutualfriends">
                                 Mutual Friends
                             </Tabs.Tab>
                         </Tabs.List>

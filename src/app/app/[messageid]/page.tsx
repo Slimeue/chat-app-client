@@ -3,7 +3,7 @@ import RoomDetails from "@/app/components/Messages/components/RoomDetails"
 import MessagePage from "@/app/components/Messages/MessagePage"
 import AppLayout from "@/app/Layouts/AppLayout"
 import { useParams } from 'next/navigation'
-import { useState } from 'react'; // Import useState
+import { useState } from 'react'; 
 
 const Message = () => {
     const { messageid } = useParams() as { messageid: string };
@@ -14,7 +14,7 @@ const Message = () => {
 
     return (
         <AppLayout>
-            <MessagePage receiverId={messageid} toggleRoomDetailsVisibility={toggleRoomDetailsVisibility} /> {/* Pass toggle function */}
+            <MessagePage receiverId={messageid} toggleRoomDetailsVisibility={toggleRoomDetailsVisibility} /> 
             {roomDetailsVisible && <RoomDetails />}
         </AppLayout>
     )

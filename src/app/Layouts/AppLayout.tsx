@@ -20,9 +20,9 @@ const AppLayout: FC<IProps> = ({ children }) => {
   // });
 
   return (
-    <>
-      <AppShellLayout>{children}</AppShellLayout>
-    </>
+
+    <AppShellLayout>{children}</AppShellLayout>
+
   );
 };
 

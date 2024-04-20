@@ -8,7 +8,7 @@ interface Props {
 }
 const Header: FC<Props> = () => {
     const [search, setSearch] = useState('');
-    
+
     return (
         <div
             style={{
@@ -24,13 +24,13 @@ const Header: FC<Props> = () => {
                     style={{ width: "24px", height: "auto" }}
                     alt="catme"
                 />
-                </div>
+            </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <IconUserPlus
                     size={30}
                     strokeWidth={2}
-                    color={"black"}
+
                     style={{ cursor: "pointer" }}
                 />
                 <Menu>
@@ -42,7 +42,7 @@ const Header: FC<Props> = () => {
                             style={{ cursor: "pointer" }}
                         />
                     </Menu.Target>
-                  
+
                 </Menu>
 
             </div>

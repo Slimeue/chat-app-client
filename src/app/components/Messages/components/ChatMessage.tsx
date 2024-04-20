@@ -33,7 +33,7 @@ const ChatMessage: FC<IProps> = (props) => {
       <Avatar src={'/me2.jpg'} alt="User avatar" size={24} />
       <div style={{
         alignSelf: user?.id === message.senderId ? 'flex-end' : 'flex-start',
-        backgroundColor: user?.id === message.senderId ? '#DCF8C6' : 'transparent',
+        // backgroundColor: user?.id === message.senderId ? '#DCF8C6' : 'transparent',
         borderRadius: '8px',
         maxWidth: '70%',
         padding: '8px'
@@ -51,20 +51,20 @@ const ChatMessage: FC<IProps> = (props) => {
           {user?.id === message.senderId ? (
             <>
               <ActionIcon variant="transparent">
-                <IconArrowBackUp size={16} color="gray" />
+                <IconArrowBackUp size={16} />
               </ActionIcon>
 
               <ActionIcon variant="transparent">
-                <IconMoodSmile size={16} color="gray" />
+                <IconMoodSmile size={16}/>
               </ActionIcon>
             </>
           ) : (
             <>
               <ActionIcon variant="transparent">
-                <IconMoodSmile size={16} color="gray" />
+                <IconMoodSmile size={16} />
               </ActionIcon>
               <ActionIcon variant="transparent">
-                <IconArrowBackUp size={16} color="gray" />
+                <IconArrowBackUp size={16} />
               </ActionIcon>
             </>
           )}

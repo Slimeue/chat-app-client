@@ -3,7 +3,7 @@ import "@mantine/core/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers/Providers";
-import { MantineProvider } from "@mantine/core";
+import { ColorSchemeScript, createTheme, MantineProvider } from "@mantine/core";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,11 +16,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+  const theme = createTheme({
+
+  });
   return (
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <MantineProvider>{children}</MantineProvider>
+          <ColorSchemeScript defaultColorScheme="light" />
+          <MantineProvider theme={theme} defaultColorScheme="light">{children}</MantineProvider>
         </Providers>
       </body>
     </html>
