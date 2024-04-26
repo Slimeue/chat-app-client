@@ -15,14 +15,19 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  Upload: { input: any; output: any; }
 };
 
 export type ChatRoom = {
   __typename?: 'ChatRoom';
   chatRooms?: Maybe<ChatRoomSearch>;
   id: Scalars['String']['output'];
+  media_file_url: Array<Scalars['String']['output']>;
+  media_image_url: Array<Scalars['String']['output']>;
+  media_videoes_url: Array<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   ownerId: Scalars['String']['output'];
+  roomType: Scalars['String']['output'];
 };
 
 
@@ -70,6 +75,14 @@ export type CreateChatRoomMemberInput = {
   userId: Scalars['String']['input'];
 };
 
+export type CreateFriendInput = {
+  friendRequestId: Scalars['ID']['input'];
+};
+
+export type CreateFriendRequestInput = {
+  requestedToId: Scalars['String']['input'];
+};
+
 export type CreateMessageInput = {
   content: Scalars['String']['input'];
   receiverId: Scalars['String']['input'];
@@ -80,17 +93,84 @@ export type CreateMessageSubscriptionInput = {
   receiverId: Scalars['String']['input'];
 };
 
+export type DeleteFriendRequestInput = {
+  id: Scalars['String']['input'];
+};
+
+export type Friend = {
+  __typename?: 'Friend';
+  friendId: Scalars['String']['output'];
+  friendName: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  search: FriendSearch;
+  userId?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type FriendSearchArgs = {
+  input: FriendPaginationInput;
+};
+
+export type FriendPaginationInput = {
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  page?: InputMaybe<Scalars['Float']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FriendRequest = {
+  __typename?: 'FriendRequest';
+  friendRequestSearcy: FriendRequestSearch;
+  id: Scalars['ID']['output'];
+  requestedToId: Scalars['String']['output'];
+  requestedToName: Scalars['String']['output'];
+  requesterId: Scalars['String']['output'];
+  requesterName: Scalars['String']['output'];
+};
+
+
+export type FriendRequestFriendRequestSearcyArgs = {
+  input: FriendRequestPaginationInput;
+};
+
+export type FriendRequestPaginationInput = {
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  page?: InputMaybe<Scalars['Float']['input']>;
+  userId?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type FriendRequestSearch = {
+  __typename?: 'FriendRequestSearch';
+  item?: Maybe<Array<FriendRequest>>;
+  meta?: Maybe<Meta>;
+};
+
+export type FriendSearch = {
+  __typename?: 'FriendSearch';
+  item: Array<Friend>;
+  meta: Meta;
+};
+
 export type Message = {
   __typename?: 'Message';
   content: Scalars['String']['output'];
   id: Scalars['String']['output'];
+  media_name: Array<Scalars['String']['output']>;
+  media_url: Array<Scalars['String']['output']>;
   messages?: Maybe<Array<Message>>;
-  receiverId?: Maybe<Scalars['String']['output']>;
-  senderId?: Maybe<Scalars['String']['output']>;
+  receiverId: Scalars['String']['output'];
+  receiverName: Scalars['String']['output'];
+  senderId: Scalars['String']['output'];
+  senderName: Scalars['String']['output'];
 };
 
 
 export type MessageMessagesArgs = {
+  input: MessagePaginationInput;
+};
+
+export type MessagePaginationInput = {
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  page?: InputMaybe<Scalars['Float']['input']>;
   receiverId: Scalars['String']['input'];
 };
 
@@ -104,15 +184,30 @@ export type Meta = {
 export type Mutation = {
   __typename?: 'Mutation';
   acceptInvitation: ChatRoomMember;
+  addImages: Message;
+  addProfileImage: User;
   creatChatRoomInvitationToken: ChatRoomInvitationToken;
   createChatRoom: ChatRoom;
   createChatRoomMember: ChatRoomMember;
+  createFriend: Friend;
+  createFriendRequest: FriendRequest;
   createMessage: Message;
+  deleteFriendRequest: FriendRequest;
 };
 
 
 export type MutationAcceptInvitationArgs = {
   input: TokenInput;
+};
+
+
+export type MutationAddImagesArgs = {
+  images: Array<Scalars['Upload']['input']>;
+};
+
+
+export type MutationAddProfileImageArgs = {
+  image: Scalars['Upload']['input'];
 };
 
 
@@ -131,13 +226,31 @@ export type MutationCreateChatRoomMemberArgs = {
 };
 
 
+export type MutationCreateFriendArgs = {
+  input: CreateFriendInput;
+};
+
+
+export type MutationCreateFriendRequestArgs = {
+  input: CreateFriendRequestInput;
+};
+
+
 export type MutationCreateMessageArgs = {
+  images?: InputMaybe<Array<Scalars['Upload']['input']>>;
   input: CreateMessageInput;
+};
+
+
+export type MutationDeleteFriendRequestArgs = {
+  input: DeleteFriendRequestInput;
 };
 
 export type Query = {
   __typename?: 'Query';
   chatRoomQuery?: Maybe<ChatRoom>;
+  frienRequestQuery?: Maybe<FriendRequest>;
+  friendQuery: Friend;
   messageQuery?: Maybe<Message>;
   userQuery: User;
 };
@@ -158,8 +271,11 @@ export type TokenInput = {
 
 export type User = {
   __typename?: 'User';
+  accountProfileImageName?: Maybe<Scalars['String']['output']>;
+  accountProfileImageUrl?: Maybe<Scalars['String']['output']>;
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
   password?: Maybe<Scalars['String']['output']>;
   users?: Maybe<Array<User>>;
 };
@@ -169,28 +285,28 @@ export type CreateMessageMutationVariables = Exact<{
 }>;
 
 
-export type CreateMessageMutation = { __typename?: 'Mutation', createMessage: { __typename?: 'Message', content: string, id: string, senderId?: string | null, receiverId?: string | null } };
+export type CreateMessageMutation = { __typename?: 'Mutation', createMessage: { __typename?: 'Message', content: string, id: string, senderId: string, receiverId: string } };
 
 export type GetMessagesQueryVariables = Exact<{
-  receiverId: Scalars['String']['input'];
+  input: MessagePaginationInput;
 }>;
 
 
-export type GetMessagesQuery = { __typename?: 'Query', messageQuery?: { __typename?: 'Message', messages?: Array<{ __typename?: 'Message', id: string, content: string, receiverId?: string | null, senderId?: string | null }> | null } | null };
+export type GetMessagesQuery = { __typename?: 'Query', messageQuery?: { __typename?: 'Message', messages?: Array<{ __typename?: 'Message', id: string, content: string, receiverId: string, senderId: string }> | null } | null };
 
 export type MessageSubscriptionSubscriptionVariables = Exact<{
   input: CreateMessageSubscriptionInput;
 }>;
 
 
-export type MessageSubscriptionSubscription = { __typename?: 'Subscription', messageCreated: { __typename?: 'Message', content: string, id: string, receiverId?: string | null, senderId?: string | null } };
+export type MessageSubscriptionSubscription = { __typename?: 'Subscription', messageCreated: { __typename?: 'Message', content: string, id: string, receiverId: string, senderId: string } };
 
 export type ChatRoomsQueryVariables = Exact<{
   input: ChatRoomPaginationInput;
 }>;
 
 
-export type ChatRoomsQuery = { __typename?: 'Query', chatRoomQuery?: { __typename?: 'ChatRoom', chatRooms?: { __typename?: 'ChatRoomSearch', item: Array<{ __typename?: 'ChatRoom', id: string, name: string, ownerId: string }>, meta: { __typename?: 'Meta', total: number, page: number, limit: number } } | null } | null };
+export type ChatRoomsQuery = { __typename?: 'Query', chatRoomQuery?: { __typename?: 'ChatRoom', chatRooms?: { __typename?: 'ChatRoomSearch', item: Array<{ __typename?: 'ChatRoom', id: string, media_file_url: Array<string>, media_image_url: Array<string>, media_videoes_url: Array<string>, name: string, ownerId: string, roomType: string }>, meta: { __typename?: 'Meta', limit: number, total: number } } | null } | null };
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -235,9 +351,9 @@ export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessage
 export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
 export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
 export const GetMessagesDocument = gql`
-    query GetMessages($receiverId: String!) {
+    query GetMessages($input: MessagePaginationInput!) {
   messageQuery {
-    messages(receiverId: $receiverId) {
+    messages(input: $input) {
       id
       content
       receiverId
@@ -259,7 +375,7 @@ export const GetMessagesDocument = gql`
  * @example
  * const { data, loading, error } = useGetMessagesQuery({
  *   variables: {
- *      receiverId: // value for 'receiverId'
+ *      input: // value for 'input'
  *   },
  * });
  */
@@ -318,13 +434,16 @@ export const ChatRoomsDocument = gql`
     chatRooms(input: $input) {
       item {
         id
+        media_file_url
+        media_image_url
+        media_videoes_url
         name
         ownerId
+        roomType
       }
       meta {
-        total
-        page
         limit
+        total
       }
     }
   }

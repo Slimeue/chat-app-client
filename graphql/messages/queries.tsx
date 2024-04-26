@@ -1,9 +1,9 @@
 import { gql } from "@apollo/client";
 
 export const GET_MESSAGES = gql`
-  query GetMessages($receiverId: String!) {
+  query GetMessages($input: MessagePaginationInput!) {
     messageQuery {
-      messages(receiverId: $receiverId) {
+      messages(input: $input) {
         id
         content
         receiverId

@@ -6,13 +6,16 @@ export const GET_ROOMS = gql`
       chatRooms(input: $input) {
         item {
           id
+          media_file_url
+          media_image_url
+          media_videoes_url
           name
           ownerId
+          roomType
         }
         meta {
-          total
-          page
           limit
+          total
         }
       }
     }
